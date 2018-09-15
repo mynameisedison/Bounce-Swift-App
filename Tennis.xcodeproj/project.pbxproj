@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7C2EF54021406FBF00BD7625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EF53F21406FBF00BD7625 /* AppDelegate.swift */; };
 		7C2EF54221406FBF00BD7625 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C2EF54121406FBF00BD7625 /* GameScene.sks */; };
-		7C2EF54421406FBF00BD7625 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C2EF54321406FBF00BD7625 /* Actions.sks */; };
 		7C2EF54621406FBF00BD7625 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EF54521406FBF00BD7625 /* GameScene.swift */; };
 		7C2EF54821406FBF00BD7625 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EF54721406FBF00BD7625 /* GameViewController.swift */; };
 		7C2EF54B21406FBF00BD7625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2EF54921406FBF00BD7625 /* Main.storyboard */; };
@@ -17,6 +16,16 @@
 		7C2EF55021406FC200BD7625 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2EF54E21406FC200BD7625 /* LaunchScreen.storyboard */; };
 		7C2EF55B21406FC200BD7625 /* TennisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EF55A21406FC200BD7625 /* TennisTests.swift */; };
 		7C2EF56621406FC200BD7625 /* TennisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EF56521406FC200BD7625 /* TennisUITests.swift */; };
+		7C5EE9DF21484D4F00A27278 /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EE9DE21484D4F00A27278 /* WaitingForTap.swift */; };
+		7C5EE9E121484D5F00A27278 /* Playing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EE9E021484D5F00A27278 /* Playing.swift */; };
+		7C5EE9E321484D7C00A27278 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EE9E221484D7C00A27278 /* GameOver.swift */; };
+		7C5EE9E821486EB600A27278 /* BrokenPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C5EE9E621486EB500A27278 /* BrokenPlatform.sks */; };
+		7CB00E85214ADCD000CB2D9C /* BallTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E84214ADCD000CB2D9C /* BallTrail.sks */; };
+		7CB00E8C214C108000CB2D9C /* game-over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E87214C108000CB2D9C /* game-over.wav */; };
+		7CB00E8D214C108000CB2D9C /* paddleBlip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E88214C108000CB2D9C /* paddleBlip.wav */; };
+		7CB00E8E214C108000CB2D9C /* BambooBreak.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E89214C108000CB2D9C /* BambooBreak.wav */; };
+		7CB00E8F214C108000CB2D9C /* pongblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E8A214C108000CB2D9C /* pongblip.wav */; };
+		7CB00E90214C108000CB2D9C /* game-won.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7CB00E8B214C108000CB2D9C /* game-won.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +49,6 @@
 		7C2EF53C21406FBF00BD7625 /* Tennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C2EF53F21406FBF00BD7625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C2EF54121406FBF00BD7625 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		7C2EF54321406FBF00BD7625 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		7C2EF54521406FBF00BD7625 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		7C2EF54721406FBF00BD7625 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7C2EF54A21406FBF00BD7625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +61,16 @@
 		7C2EF56121406FC200BD7625 /* TennisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C2EF56521406FC200BD7625 /* TennisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisUITests.swift; sourceTree = "<group>"; };
 		7C2EF56721406FC200BD7625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C5EE9DE21484D4F00A27278 /* WaitingForTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
+		7C5EE9E021484D5F00A27278 /* Playing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playing.swift; sourceTree = "<group>"; };
+		7C5EE9E221484D7C00A27278 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		7C5EE9E621486EB500A27278 /* BrokenPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BrokenPlatform.sks; sourceTree = "<group>"; };
+		7CB00E84214ADCD000CB2D9C /* BallTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BallTrail.sks; sourceTree = "<group>"; };
+		7CB00E87214C108000CB2D9C /* game-over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-over.wav"; sourceTree = "<group>"; };
+		7CB00E88214C108000CB2D9C /* paddleBlip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paddleBlip.wav; sourceTree = "<group>"; };
+		7CB00E89214C108000CB2D9C /* BambooBreak.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BambooBreak.wav; sourceTree = "<group>"; };
+		7CB00E8A214C108000CB2D9C /* pongblip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pongblip.wav; sourceTree = "<group>"; };
+		7CB00E8B214C108000CB2D9C /* game-won.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-won.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +121,12 @@
 		7C2EF53E21406FBF00BD7625 /* Tennis */ = {
 			isa = PBXGroup;
 			children = (
+				7CB00E86214C108000CB2D9C /* Sounds */,
+				7C5EE9E521486EA500A27278 /* Particles */,
 				7C2EF53F21406FBF00BD7625 /* AppDelegate.swift */,
 				7C2EF54121406FBF00BD7625 /* GameScene.sks */,
-				7C2EF54321406FBF00BD7625 /* Actions.sks */,
 				7C2EF54521406FBF00BD7625 /* GameScene.swift */,
+				7C5EE9B42148239E00A27278 /* States */,
 				7C2EF54721406FBF00BD7625 /* GameViewController.swift */,
 				7C2EF54921406FBF00BD7625 /* Main.storyboard */,
 				7C2EF54C21406FC200BD7625 /* Assets.xcassets */,
@@ -132,6 +152,37 @@
 				7C2EF56721406FC200BD7625 /* Info.plist */,
 			);
 			path = TennisUITests;
+			sourceTree = "<group>";
+		};
+		7C5EE9B42148239E00A27278 /* States */ = {
+			isa = PBXGroup;
+			children = (
+				7C5EE9E221484D7C00A27278 /* GameOver.swift */,
+				7C5EE9E021484D5F00A27278 /* Playing.swift */,
+				7C5EE9DE21484D4F00A27278 /* WaitingForTap.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
+		7C5EE9E521486EA500A27278 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				7CB00E84214ADCD000CB2D9C /* BallTrail.sks */,
+				7C5EE9E621486EB500A27278 /* BrokenPlatform.sks */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		7CB00E86214C108000CB2D9C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7CB00E87214C108000CB2D9C /* game-over.wav */,
+				7CB00E88214C108000CB2D9C /* paddleBlip.wav */,
+				7CB00E89214C108000CB2D9C /* BambooBreak.wav */,
+				7CB00E8A214C108000CB2D9C /* pongblip.wav */,
+				7CB00E8B214C108000CB2D9C /* game-won.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,9 +291,15 @@
 			files = (
 				7C2EF54B21406FBF00BD7625 /* Main.storyboard in Resources */,
 				7C2EF54221406FBF00BD7625 /* GameScene.sks in Resources */,
+				7CB00E90214C108000CB2D9C /* game-won.mp3 in Resources */,
+				7CB00E8C214C108000CB2D9C /* game-over.wav in Resources */,
+				7CB00E8F214C108000CB2D9C /* pongblip.wav in Resources */,
+				7CB00E8D214C108000CB2D9C /* paddleBlip.wav in Resources */,
+				7C5EE9E821486EB600A27278 /* BrokenPlatform.sks in Resources */,
+				7CB00E8E214C108000CB2D9C /* BambooBreak.wav in Resources */,
+				7CB00E85214ADCD000CB2D9C /* BallTrail.sks in Resources */,
 				7C2EF54D21406FC200BD7625 /* Assets.xcassets in Resources */,
 				7C2EF55021406FC200BD7625 /* LaunchScreen.storyboard in Resources */,
-				7C2EF54421406FBF00BD7625 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2EF54621406FBF00BD7625 /* GameScene.swift in Sources */,
+				7C5EE9DF21484D4F00A27278 /* WaitingForTap.swift in Sources */,
 				7C2EF54821406FBF00BD7625 /* GameViewController.swift in Sources */,
+				7C5EE9E321484D7C00A27278 /* GameOver.swift in Sources */,
 				7C2EF54021406FBF00BD7625 /* AppDelegate.swift in Sources */,
+				7C5EE9E121484D5F00A27278 /* Playing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5WZ6R764M7;
 				INFOPLIST_FILE = Tennis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,6 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5WZ6R764M7;
 				INFOPLIST_FILE = Tennis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

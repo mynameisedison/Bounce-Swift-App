@@ -39,7 +39,7 @@ class Playing: GKState {
             ball.physicsBody!.applyImpulse(CGVector(dx: randomDirection(), dy: 0.0))
         }
         if ySpeed <= 10.0 {
-            ball.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: randomDirectiony()))
+            ball.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: randomDirection()))
         }
         
         if speed > maxSpeed {
@@ -61,10 +61,6 @@ class Playing: GKState {
         } else {
             return speedFactor
         }
-    }
-    @objc func randomDirectiony() -> CGFloat {
-        let speedFactor: CGFloat = 4.8
-            return speedFactor
     }
     
     

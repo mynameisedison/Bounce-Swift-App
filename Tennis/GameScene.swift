@@ -12,7 +12,7 @@ let BallCategoryName = "ball"
 let PaddleCategoryName = "paddle"
 let BlockCategoryName = "block"
 let GameMessageName = "gameMessage"
-let DrawBoxCategoryName = "drawBox"
+//let DrawBoxCategoryName = "drawBox"
 
 
 let BallCategory   : UInt32 = 0x1 << 0
@@ -20,13 +20,16 @@ let BottomCategory : UInt32 = 0x1 << 1
 let BlockCategory  : UInt32 = 0x1 << 2
 let PaddleCategory : UInt32 = 0x1 << 3
 let BorderCategory : UInt32 = 0x1 << 4
-let DrawBoxCategory: UInt32 = 0x1 << 5
+//let DrawBoxCategory: UInt32 = 0x1 << 5
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc var isFingerOnPaddle = false
     @objc var blocksArray :[SKSpriteNode] = [SKSpriteNode]()
     @objc let blockHeight = SKSpriteNode(imageNamed: "block").size.height
+    @objc let blockWidth = SKSpriteNode(imageNamed: "block").size.width
+    @objc let numberOfBlocks = 7
+
     
     @objc lazy var gameState: GKStateMachine = GKStateMachine(states: [
         WaitingForTap(scene: self),
@@ -40,7 +43,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let texture = SKTexture(imageNamed: textureName)
             let actionSequence = SKAction.sequence([SKAction.setTexture(texture),
                                                     SKAction.scale(to: 1.0, duration: 0.25)])
-            
             gameOver.run(actionSequence)
             run(gameWon ? gameWonSound : gameOverSound)
         }
@@ -68,9 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let ball = childNode(withName: BallCategoryName) as! SKSpriteNode
         
-        let drawBox = childNode(withName: DrawBoxCategoryName) as! SKSpriteNode
-        drawBox.name = DrawBoxCategoryName
-        drawBox.physicsBody!.categoryBitMask = DrawBoxCategory
+//        let drawBox = childNode(withName: DrawBoxCategoryName) as! SKSpriteNode
+//        drawBox.name = DrawBoxCategoryName
+//        drawBox.physicsBody!.categoryBitMask = DrawBoxCategory
 
         let bottomRect = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 1)
         let bottom = SKNode()
@@ -84,16 +86,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        paddle.physicsBody!.categoryBitMask = PaddleCategory
         borderBody.categoryBitMask = BorderCategory
         
-        ball.physicsBody!.contactTestBitMask = BottomCategory | BlockCategory | BorderCategory | PaddleCategory | DrawBoxCategory
+        ball.physicsBody!.contactTestBitMask = BottomCategory | BlockCategory | BorderCategory | PaddleCategory
+//            | DrawBoxCategory
         
         
-        let numberOfBlocks = 7
-        let blockWidth = SKSpriteNode(imageNamed: "block").size.width
         
-//        let totalBlocksWidth = blockWidth * CGFloat(numberOfBlocks)
-//         2.
-//        let xOffset = (frame.width - totalBlocksWidth) / 2
-//         3.
         for i in 0..<numberOfBlocks {
             if(i%2==0){
                 let block = SKSpriteNode(imageNamed: BlockCategoryName)
@@ -337,7 +334,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if isGameWon() {
                     gameState.enter(GameOver.self)
                     gameWon = true
-//                    score += 1
                 }
             }
             // 1.
@@ -347,32 +343,173 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // 2.
             if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == PaddleCategory {
-
-                run(blipPaddleSound)
-            }
-            if ((firstBody.categoryBitMask & BallCategory) != 0 && (secondBody.categoryBitMask & DrawBoxCategory) != 0) {
-                print("detect")
+                
                 for block in blocksArray{
                     moveDown(block)
                 }
+                newRow()
+                run(blipPaddleSound)
             }
-            if firstBody.categoryBitMask == BlockCategory && secondBody.categoryBitMask == DrawBoxCategory {
+//            if (firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == DrawBoxCategory) {
+//                print("detect")
+//                for block in blocksArray{
+//                    moveDown(block)
+//                }
+//            }
+            if firstBody.categoryBitMask == BlockCategory && secondBody.categoryBitMask == BottomCategory {
                 //youlose
             }
         }
     }
     
     
-    @objc func moveDown(_ node: SKNode) {
+    @objc func moveDown(_ node: SKSpriteNode) {
         if self.childNode(withName: "block")==nil{
             print("notfound")
         }
         else{
             node.position.y = node.position.y - blockHeight*2
             node.removeFromParent()
+            blocksArray = blocksArray.filter { $0 != node }
+            blocksArray.append(node)
             addChild(node)
+            
             }
         }
+    @objc func newRow(){
+        let randNumber = Int.random(in: 1 ... 7)
+        switch randNumber{
+        case 1:
+            print("1block")
+            for i in 0..<numberOfBlocks {
+                if i==3 {
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 2:
+            print("2blocks")
+            for i in 0..<numberOfBlocks {
+                if i==1 || i==5 {
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 3:
+            print("3block")
+            for i in 0..<numberOfBlocks {
+                if(i%2==1){
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 4:
+            print("4blocks")
+            for i in 0..<numberOfBlocks {
+                if(i%2==0){
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 5:
+            print("5blocks")
+            for i in 0..<numberOfBlocks {
+                if(i%2==0 || i==3){
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 6:
+            print("6blocks")
+            for i in 0..<numberOfBlocks {
+                if(i%2==0 || i==1 || i==5){
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+                }
+            }
+        case 7:
+            print("7blocks")
+            for i in 0..<numberOfBlocks {
+                    let block = SKSpriteNode(imageNamed: BlockCategoryName)
+                    block.position = CGPoint(x: CGFloat(CGFloat(i-3) * blockWidth),y: frame.height * 0.2 + blockHeight*10)
+                    block.physicsBody = SKPhysicsBody(rectangleOf: block.frame.size)
+                    block.physicsBody!.allowsRotation = false
+                    block.physicsBody!.friction = 0.0
+                    block.physicsBody!.affectedByGravity = false
+                    block.physicsBody!.isDynamic = false
+                    block.name = BlockCategoryName
+                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.zPosition = 2
+                    addChild(block)
+                    blocksArray.append(block)
+            }
+        default:
+            print("default")
+        }
+    }
     
     @objc func breakBlock(_ node: SKNode) {
         run(bambooBreakSound)
@@ -382,7 +519,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(particles)
         particles.run(SKAction.sequence([SKAction.wait(forDuration: 1.0), SKAction.removeFromParent()]))
         node.removeFromParent()
-//        blocksArray.remove(at: node)
         blocksArray = blocksArray.filter { $0 != node }
     }
     
